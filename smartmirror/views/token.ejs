@@ -1,0 +1,14 @@
+<%- include("partials/header") -%>
+
+  <h2>Enter the token here</h2>
+  <hr style="margin-bottom: 3rem;">
+        <form class="form-group" action="/token" method="post">
+          <input type="text" class="question" id="token" name="token" value="" autocomplete="off" required>
+          <label for="token"><span>Enter the Authurizarion Code Here</span></label>
+          <input style="margin-top: 2.2rem;" class="btn" type="submit" name="Next" href="/finish">
+        </form>
+
+<%- include("partials/footer") -%>
+
+
+

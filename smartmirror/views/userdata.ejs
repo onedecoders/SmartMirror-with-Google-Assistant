@@ -1,0 +1,33 @@
+<%- include("partials/header") -%> 
+
+<div>
+    <h2>Customize Your SmartMirror</h2> 
+    <hr style="margin-bottom: 3rem;">
+    <form action="/userdata" method="post">
+        <input class="question" style="font-size: 25px;" type="text" id="name" name="myName" value="" autocomplete="off" required>
+        <label style="margin-bottom: 5rem;" for="name"><span>What's your Name?</span></label>
+        <input style="font-size: 25px;" class="question date" type="date" id="DOB" name="DOB" value="" autocomplete="off" required placeholder="eg: 01-01-2021">
+        <label style="margin-bottom: 5rem;" for="DOB"><span>What's your DOB?</span></label>
+        <input style="font-size: 25px;" class="question" type="email" id="email" name="email" value="" autocomplete="off" required>
+        <label style="margin-bottom: 5rem;" for="DOB"><span>What's your Email?</span></label>
+
+        <div class="question">
+      
+              <select style="font-size: 25px;" id="cityname" class="question drop-down" autocomplete="off" required name="myLocation" value="">
+                <%  obj.forEach(element => { %> 
+                        <option name="myLocation" value="<%= JSON.stringify(element) %>"><span><%= element.location %></span></option>                     
+                <% }); %>
+              </select>
+
+        <label style="margin-top: 2.5rem;" for="cityname"><span>What's your City Name?</span></label>
+        </div>
+    
+        <input style="font-size: 32px;"class="question" type="text" id="calurl" name="calendarUrl" value="" autocomplete="off" required>
+        <label style="margin-bottom: 2rem; font-size: 25px;" for="calurl"><span>What's your iCal URL?</span></label>  
+        <a href="https://calendar.google.com/calendar/u/0/r?pli=1" target="_blank">Get your iCal URL here</a>
+        <input class="btn" id="connect" type="submit" value="Next"> 
+  </form>
+</div>
+
+<%- include("partials/footer") -%> 
+

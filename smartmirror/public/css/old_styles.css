@@ -1,0 +1,350 @@
+
+body {
+  text-align: left;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #000000;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 5rem;
+  font-weight: 500;
+  margin: 0.5rem auto;
+  color: #ffffff;
+}
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 3rem;
+  font-weight: 400;
+  margin: 0.5rem auto;
+  color: #ffffff;
+}
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 3rem;
+  font-weight: 400;
+  /* margin: 0.5rem auto; */
+  color: #ffffff;
+}
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: 200;
+  color: #ffffff;
+}
+.btn {
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 20px 10px 20px;
+  border: solid #ffffff 2px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3b3b3b;
+  text-decoration: none;
+}
+
+
+input,
+span,
+label,
+password {
+  font-family: "Roboto", sans-serif;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+password:focus,
+input:focus {
+  outline: 0;
+}
+/* Question */
+
+input.question,
+password.question {
+  font-size: 48px;
+  font-weight: 300;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 80%;
+  background: rgba(0, 0, 0, 0);
+  transition: padding-top 0.2s ease, margin-top 0.2s ease;
+  overflow-x: hidden; /* Hack to make "rows" attribute apply in Firefox. */
+}
+/* Underline and Placeholder */
+
+input.question + label,
+password.question + label {
+  display: block;
+  position: relative;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  width: 20%;
+  border-top: 1px solid white;
+  -webkit-transition: width 0.4s ease;
+  transition: width 0.4s ease;
+  height: 0px;
+}
+
+input.question:focus + label,
+password.question:focus + label {
+  width: 80%;
+}
+
+input.question:focus,
+input.question:valid {
+  padding-top: 35px;
+}
+
+password.question:valid,
+password.question:focus {
+  margin-top: 35px;
+}
+
+input.question:focus + label > span,
+input.question:valid + label > span {
+  top: -100px;
+  font-size: 22px;
+  color: rgb(170, 169, 169);
+}
+
+password.question:focus + label > span,
+password.question:valid + label > span {
+  top: -150px;
+  font-size: 22px;
+  color: rgb(170, 169, 169);
+}
+
+input.question:valid + label,
+password.question:valid + label {
+  border-color: white;
+}
+
+#show {
+  color: rgb(170, 169, 169);
+}
+#hide {
+  display: inline;
+  margin-right: 2%;
+  color: rgb(170, 169, 169);
+}
+
+input.question:invalid,
+password.question:invalid {
+  box-shadow: none;
+}
+
+input.question + label > span,
+password.question + label > span {
+  font-weight: 300;
+  margin: 0;
+  position: absolute;
+  color: #d8d8d8;
+  font-size: 22px;
+  top: -66px;
+  left: 0px;
+  z-index: -1;
+  -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+  transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+
+input[type="submit"] {
+  -webkit-transition: opacity 0.2s ease, background 0.2s ease;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  display: block;
+  opacity: 0;
+  margin: 10px 0 0 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  color: #000000;
+  background: #eee;
+}
+
+input[type="submit"]:active {
+  background: #999;
+}
+
+input.question:valid ~ input[type="submit"],
+password.question:valid ~ input[type="submit"] {
+  -webkit-animation: appear 1s forwards;
+  animation: appear 1s forwards;
+}
+
+input.question:invalid ~ input[type="submit"],
+password.question:invalid ~ input[type="submit"] {
+  display: none;
+}
+
+/**/
+*
+{
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/*
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    margin: 0;
+}
+*/
+
+#_checkbox
+{
+    display: none;
+}
+
+.label
+{
+    position: absolute;
+    /* top: 50%; */
+    /* right: 0;
+    left: 0; */
+    width: 30px;
+    height: 30px;
+    margin: 14px auto;
+    background-color: rgb(170, 169, 169);
+    transform: translateY(-50%);
+    border-radius: 50%;
+    /* box-shadow: 0 2.1px 3px #ffbeb8; */
+    cursor: pointer;
+    transition: 0.2s ease transform, 0.2s ease background-color, 0.2s ease box-shadow;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.label:before
+{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 21px;
+    height: 21px;
+    margin: 0 auto;
+    background-color: #fff;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    box-shadow: inset 0 2.1px 3px #ffbeb8;
+    transition: 0.2s ease width, 0.2s ease height;
+}
+
+.label:hover:before
+{
+    width: 16.5px;
+    height: 16.5px;
+    box-shadow: inset 0 2.1px 3px #ff9d96;
+}
+
+.label:active
+{
+    transform: translateY(-50%) scale(0.9);
+}
+
+#tick_mark
+{
+    position: absolute;
+    top: -0.3px;
+    right: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0 auto;
+    margin-left: 4.2px;
+    transform: rotateZ(-40deg);
+}
+
+#tick_mark:before, #tick_mark:after
+{
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    border-radius: 0.6px;
+    opacity: 0;
+    transition: 0.2s ease transform, 0.2s ease opacity;
+}
+
+#tick_mark:before
+{
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    height: 9px;
+    box-shadow: -0.6px 0 1.5px rgba(0,0,0,0.23);
+    transform: translateY(-68px)
+}
+
+#tick_mark:after
+{
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    height: 3px;
+    box-shadow: 0 0.9px 1.5px rgba(17, 5, 5, 0.23);
+    transform: translateX(78px)
+}
+
+#_checkbox:checked + .label
+{
+    background-color: #07d410;
+    /* box-shadow: 0 2.1px 3px  #92ff97; */
+}
+
+#_checkbox:checked + .label:before
+{
+    width: 0;
+    height: 0;
+}
+
+#_checkbox:checked + .label #tick_mark:before, #_checkbox:checked + .label #tick_mark:after
+{
+    transform: translate(0);
+    opacity: 1;
+}
+
+#showpass {
+  margin-left: 40px;
+  position: absolute;
+  margin-bottom: 20px;
+}
+
+@-webkit-keyframes appear {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  100% {
+    opacity: 1;
+  }
+}

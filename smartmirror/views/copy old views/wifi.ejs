@@ -1,0 +1,54 @@
+<%- include("partials/header") -%>
+
+  <div>
+    <div>
+        <h3>To begin your journey with Smart Mirror set-up your Wifi</h3>
+    </div>
+    <div>
+        <form action="/wificonnect" autocomplete="new-password"  class="wifi-form" method="post">
+              <input class="question" type="text" id="inputSsid" name="ssid" value="" autocomplete="off" required>
+              <label style="margin-bottom: 2.5rem;" for="exampleFormControlSelect1"><span>What's your Wi-Fi Name?</span></label>
+              <input class="question" type="password" id="inputPassword" name="pwd" value="" autocomplete="off" required>
+              <label style="margin-bottom: 2.5rem;" for="inputPassword"><span>What's your Wi-Fi Password?</span></label>  
+              <!-- <table>
+                <thead >
+                  <label><input type="checkbox" id="hide" onclick="myFunction()">Show Password</label>
+                </thead>
+              </table> -->
+
+              <div>
+                <input type="checkbox" id="_checkbox" onclick="myFunction()">
+                <label class="label" for="_checkbox">
+                <div id="tick_mark"></div>
+                </label>
+                <label id="showpass" for="password">Show Password</label>
+              </div>
+              <input class="btn" id="connect" type="submit" value="Connect" style="margin-top: 5.5rem;">
+        </form>
+
+        <!-- <% if(enable){ %>
+        <!-- <script> document.getElementById("next").disabled = true; </script> -->
+        <script> document.getElementById("connect").disabled = false; </script>
+        <% } else { %> 
+        <!-- <script> document.getElementById("next").disabled = false; </script> -->
+        <script> document.getElementById("connect").disabled = true; </script>
+        <% } %>  -->
+
+       <script>
+
+        function myFunction() {
+          var x = document.getElementById("inputPassword");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+
+        </script>
+
+    </div>
+    
+  </div>
+
+  <%- include("partials/footer") -%>
