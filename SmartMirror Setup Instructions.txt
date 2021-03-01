@@ -1,0 +1,97 @@
+1. Install the latest version on Raspbian OS & do the initial setup
+
+2. Install Anydesk and Enable SSH & VNC in Raspberry Pi Configuration
+
+3. Copy the given Smartmirror folder in /home/pi/
+
+4. Install MagicMirror (MM) - https://docs.magicmirror.builders/getting-started/installation.html#manual-installation
+	a. Download and install the latest Node.js version: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+	b. sudo apt install -y nodejs
+	c. Clone the repository and check out the master branch: git clone https://github.com/MichMich/MagicMirror
+	d. Enter the repository: cd MagicMirror/
+	e. Install the application: npm install
+	f. Make a copy of the config sample file: cp config/config.js.sample config/config.js
+	g. Start the application: npm run start
+
+5. Configuring the Rpi for MM:
+	a. sudo apt-get install unclutter
+
+	b. Edit the autostart file: sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+		Paste the following:
+			@lxpanel --profile LXDE-pi
+			@pcmanfm --desktop --profile LXDE-pi
+			@xscreensaver -no-splash
+			@unclutter -display :0 -idle 3 -root -noevents
+			@xset s noblank
+			@xset s off
+			@xset -dpms
+
+	c. Disable the WiFi Power Save:
+		a. Edit /etc/modprobe.d/8192cu.conf: sudo nano /etc/modprobe.d/8192cu.conf
+			Add the following lines
+				# Disable power saving
+				options 8192cu rtw_power_mgnt=0 rtw_enusbss=1 rtw_ips_mode=1
+
+	d. Install MMM-Remote Control module: 
+		bash -c "$(curl -s https://raw.githubusercontent.com/Jopyth/MMM-Remote-Control/master/installer.sh)"
+	
+	e. Copy config.js, compliements.js, calender.js and CSS folder from /home/pi/SmartMirror/extras/MagicMirror
+
+6. Install the Google-Assistant-Smart-Display: https://github.com/shivasiddharth/GassistPi/tree/Google-Assistant-SDK-Smart-Screen
+	a. Open the terminal and execute the following:
+		i. sudo apt-get install git
+		ii. sudo apt-get install alsa-utils
+		iii. git clone https://github.com/shivasiddharth/GassistPi -b Google-Assistant-SDK-Smart-Screen 
+		iv. sudo apt-get 
+
+	b. Configure the Audio I/O: 
+		i. Right click the volume icon and select the default input and output ports
+
+	c. Create a new project in google developer console and get the project id & model id & credentials.json file
+
+	d. Installing the Gassist:
+		i. cd /home/${USER}/
+		ii. Replace the "main.py" file in /home/pi/Gassisit/src/ with the main.py given in SmartmMirror/extras/Gassist/
+		iii. Replace the "gassist-installer.sh" file in /home/pi/Gassisit/scripts/ with the new gassist-installer.sh given in SmartmMirror/extras/Gassist/scripts
+		iv. Add the "GA2.sh" file from SmartmMirror/extras/Gassist/scripts and place in the original Gassist/scripts/ folder
+		v. Make the installer Executable: sudo chmod +x ./GassistPi/scripts/gassist-installer.sh
+		vi. Now make the GA2.sh installer executable: sudo chmod +x ./GassistPi/scripts/GA2.sh 
+		vii. Execute the installer "gassist-installer.sh". When Prompted, enter your Google Cloud console Project-Id, A name for your Assistant and the Full Name of your credentials file, including the json extension.
+			- sudo  ./GassistPi/scripts/gassist-installer.sh
+				- Full path and name to credential file: /home/pi/SmartMirror/credentials/client_secret_924959969127-n9ljsjs9n8locvga9qep366cgi08fkka.apps.googleusercontent.com.json
+				- Project-id: magicmirrorassistant-296808
+				- Model-id: magicmirrorassistant-296808-magicmirrorassistant-rj7reo
+		viii. Go to /home/pi/env/lib/python3.7/site-packages/google_auth_oauthlib 
+			- Open flow.py and replace its content given in the SmartmMirror/extras/Google-Outh/flow.py
+		ix. Also, copy the authtoken.txt and url.txt from SmartmMirror/extras/Google-Outh/ to /home/pi/env/lib/python3.7/site-packages/google_auth_oauthlib 
+		x. Next, execute the "GA2.sh"
+			- sudo ./GassistPi/scripts/GA2.sh
+		xi. To manually start and test the Google Assistant:
+			- /home/${USER}/env/bin/python -u /home/${USER}/GassistPi/src/main.py --device_model_id 'replace this with the model id' --project_id 'replace this with the project id'
+			- Pre-confgured one: 
+				/home/${USER}/env/bin/python -u /home/${USER}/GassistPi/src/main.py --device_model_id 'magicmirrorassistant-296808-magicmirrorassistant-rj7reo' --project_id 'magicmirrorassistant-296808'
+
+7. Installing the pm2 - Execute the following: 
+	a. sudo npm install -g pm2
+	b. pm2 startup
+	c. PM2 will now show you a command you need to execute.
+	d. Makes all the scripts in Smartmirror/scripts/ executable: 
+		- cd /home/pi/SmartMirror/scripts
+		- chmod +x `ls *.sh`
+	e. For autostarting the pm2 at boot: pm2 start startup.sh
+	f. A browser will be opened shortly after executing the previous script. Minimise it and run:
+		- pm2 save
+
+8. Installing Adafruit IO libraries:
+	pip3 install adafruit-io
+
+9. Disabling Screensaver:
+	a. sudo apt-get install xscreensaver
+	b. Once installed, go to Rpi's desktop "Menu" (left top corner)
+	c. Go to preference --> screensaver.
+	d. You will see a screen saver main menu. In the mode drop-down menu, select "disable screensaver" then close the window.
+	e. Reboot the Raspberry PI.
+
+10. Disconnect all the wifi and reboot.
+	
+		
