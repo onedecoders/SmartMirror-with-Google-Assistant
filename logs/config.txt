@@ -1,0 +1,114 @@
+var config = 
+  {
+    address: '0.0.0.0',
+    port: 8080,
+    ipWhitelist: [],
+    useHttps: false, 		// Support HTTPS or not, default "false" will use HTTP
+    httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
+    httpsCertificate: "", 	// HTTPS Certificate path, only require when useHttps is true
+  
+    language: "en",
+    logLevel: ["INFO", "LOG", "WARN", "ERROR"],
+    timeFormat: 24,
+    units: "metric",
+    modules: [
+      {
+        module: 'alert',
+      },
+//      {
+//       module: 'updatenotification',
+//        position: 'top_bar',
+//      },
+      {
+        module: 'clock',
+        position: 'top_left',
+      },
+      {
+        module: 'calendar',
+        header: "Deepak's Calendar",
+        position: 'top_left',
+        config: {
+          calendars: [
+            {
+              symbol: 'calendar-check',
+              url: 'webcal://www.calendarlabs.com/ical-calendar/ics/33/INDIA_Holidays.ics'
+            },
+            {
+              symbol: 'calendar-check',
+              url: 'Enter your iCal URL from your google calendar'
+            }
+          ]
+        }
+      },
+      {
+        module: 'compliments',
+        position: 'middle_center',
+      },
+      {
+        module: 'currentweather',
+        position: 'top_right',
+        config: {
+          location: 'Mumbai',
+          locationID: '1275339',   
+          appid: 'Enter the appid from your Open Weather Map account'
+        }
+      },
+      {
+        module: 'weatherforecast',
+        position: 'top_right',
+        header: 'my day ',
+        config: {
+          location: 'Mumbai',
+          locationID: '1275339',
+          appid: 'Enter the appid from your Open Weather Map account'
+        }
+      },
+      {
+        module: 'newsfeed',
+        position: 'lower_third',
+        config: {
+          feeds: [
+            {
+              title: 'The Indian Express',
+              url: 'https://indianexpress.com/feed/'
+            },
+            {
+              title: 'NDTV News',
+              url: 'http://feeds.feedburner.com/NDTV-LatestNews'
+            },
+            {
+              title: 'The Times of India',
+              url: 'https://timesofindia.indiatimes.com/rssfeedstopstories.cms?x=1'
+            },
+            {
+              title: 'India Today',
+              url: 'https://www.indiatoday.in/rss/1206578'
+            }
+          ],
+          showDescription: true,
+          showSourceTitle: true,
+          showPublishDate: true,
+          broadcastNewsFeeds: true,
+          broadcastNewsUpdates: true,
+        }
+      },
+      {
+        module: 'MMM-Remote-Control',
+        config: {
+          apiKey: 'd85b1c91f1bc4c45a2d8d69f17ebdb5a'
+        }
+      },
+      {
+        module: 'helloworld',
+        position: 'bottom_right',
+        config: {
+          text: 'OneDecoders - LABS'
+        }
+      },
+  
+    ],
+  
+  }
+  
+  /*************** DO NOT EDIT THE LINE BELOW ***************/
+  if (typeof module !== 'undefined') {module.exports = config;}
